@@ -1,5 +1,10 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.17...3.18)
 project(${SKBUILD_PROJECT_NAME} VERSION ${SKBUILD_PROJECT_VERSION})
+
+if(NOT DEFINED ${CMAKE_CUDA_ARCHITECTURES})
+    set(CMAKE_CUDA_ARCHITECTURES 86 80 75)
+endif()
+message(STATUS "CUDA architectures set to ${CMAKE_CUDA_ARCHITECTURES}")
 
 find_package(glog REQUIRED)
 if(DEFINED glog_VERSION_MAJOR)
